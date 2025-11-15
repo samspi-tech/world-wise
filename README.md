@@ -3,6 +3,7 @@
 ### Built with:
 
 [![React][React.js]][React-url]
+[![CSS-Modules][CSS-Modules]][CSS-Modules-url]
 
 ### Libraries used in this project:
 
@@ -14,3 +15,5 @@ Udemy course: [The Ultimate React Course](https://www.udemy.com/course/the-ultim
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://react.dev/
+[CSS-Modules]: https://img.shields.io/badge/-css%20modules-000?logo=cssmodules&logoColor=fff&style=for-the-badge
+[CSS-Modules-url]: https://github.com/css-modules/css-modules
