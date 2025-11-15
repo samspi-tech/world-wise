@@ -1,0 +1,26 @@
+.login {
+    margin: 2.5rem;
+    padding: 2.5rem 5rem;
+    min-height: calc(100vh - 5rem);
+    background-color: var(--color-dark--1);
+}
+
+.form {
+    width: 100%;
+    padding: 2rem 3rem;
+    border-radius: 7px;
+    background-color: var(--color-dark--2);
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    width: 48rem;
+    margin: 8rem auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
