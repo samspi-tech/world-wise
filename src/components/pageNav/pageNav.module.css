@@ -1,0 +1,15 @@
+.nav ul {
+    display: flex;
+    gap: 1rem;
+
+    list-style: none;
+}
+
+.nav ul li a {
+    text-decoration: none;
+}
+
+.nav :global(.active) {
+    color: white;
+    background-color: green;
+}
