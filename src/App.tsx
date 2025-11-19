@@ -6,6 +6,7 @@ import PageNotFound from './pages/pageNotFound/PageNotFound';
 import Login from './pages/login/Login';
 import AppLayout from './pages/appLayout/AppLayout';
 import CityList from './components/cityList/CityList';
+import CountryList from './components/countryList/CountryList';
 
 const App = () => {
     return (
@@ -18,7 +19,7 @@ const App = () => {
 
                 <Route path="/app" element={<AppLayout />}>
                     <Route path="cities" element={<CityList />} />
-                    <Route path="countries" element={<p>Countries</p>} />
+                    <Route path="countries" element={<CountryList />} />
                     <Route path="form" element={<p>Form</p>} />
                 </Route>
 

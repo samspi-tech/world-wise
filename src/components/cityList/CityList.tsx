@@ -4,19 +4,9 @@ import { CitiesContext } from '@/contexts/cities/CitiesContext';
 import Spinner from '../spinner/Spinner';
 import CityItem from '../cityItem/CityItem';
 import Message from '../message/Message';
-import { useEffect } from 'react';
 
 const CityList = () => {
-    const { cities, getAllCities, isLoading } = useCustomContext(
-        CitiesContext,
-        'Cities ctx'
-    );
-
-    useEffect(() => {
-        getAllCities();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const { cities, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');
 
     if (isLoading) return <Spinner />;
 
