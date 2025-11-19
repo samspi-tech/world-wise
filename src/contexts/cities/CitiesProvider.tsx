@@ -1,4 +1,4 @@
-import { useState, type FC, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import type { Cities } from 'data/types';
 import { CitiesContext } from './CitiesContext';
 
@@ -6,7 +6,7 @@ type CitiesProviderProps = {
     children: ReactNode;
 };
 
-export const CitiesProvider: FC<CitiesProviderProps> = ({ children }) => {
+export const CitiesProvider = ({ children }: CitiesProviderProps) => {
     const [cities, setCities] = useState<Cities>();
     const [isLoading, setIsLoading] = useState(false);
 

@@ -1,13 +1,12 @@
 import type { City } from 'data/types';
 import styles from './CityItem.module.css';
 import { formatDate } from '@/utils/globalHelpers';
-import type { FC } from 'react';
 
 type CityItemProps = {
     city: City;
 };
 
-const CityItem: FC<CityItemProps> = ({ city }) => {
+const CityItem = ({ city }: CityItemProps) => {
     const { cityName, date, emoji } = city;
     const formattedDate = formatDate(date);
 
