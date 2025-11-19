@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './login.module.css';
+import styles from './Login.module.css';
 import PageNav from '@/components/pageNav/PageNav';
 
 const Login = () => {

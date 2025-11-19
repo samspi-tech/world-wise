@@ -24,8 +24,10 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
 
+        "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "data/*": ["data/*"]
         }
     },
     "include": ["src", "vite-plugin-eslint.d.ts"]

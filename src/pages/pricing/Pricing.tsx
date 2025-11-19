@@ -1,5 +1,5 @@
 import PageNav from '@/components/pageNav/PageNav';
-import styles from '../products/products.module.css';
+import styles from '../Products/products.module.css';
 
 const Pricing = () => {
     return (
