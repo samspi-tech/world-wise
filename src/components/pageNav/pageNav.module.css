@@ -19,10 +19,10 @@
     text-decoration: none;
     text-transform: uppercase;
     color: var(--color-light--2);
-}
 
-.nav a:global(.active) {
-    color: var(--color-brand--2);
+    &:global(.active) {
+        color: var(--color-brand--2);
+    }
 }
 
 a.ctaLink:link,

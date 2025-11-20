@@ -21,8 +21,8 @@
     padding: 0.5rem 2rem;
     text-decoration: none;
     text-transform: uppercase;
-}
 
-.nav a:global(.active) {
-    background-color: var(--color-dark--0);
+    &:global(.active) {
+        background-color: var(--color-dark--0);
+    }
 }
