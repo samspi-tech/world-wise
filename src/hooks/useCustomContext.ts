@@ -7,7 +7,7 @@ export const useCustomContext = <T>(
     const context = useContext(ctx);
 
     if (!context) {
-        throw new Error(`${ctxName} is null. This should not be the case.`);
+        throw new Error(`${ctxName} was used outside of its Provider`);
     }
 
     return context;

@@ -1,9 +1,9 @@
 import { useCustomContext } from '@/hooks/useCustomContext';
 import styles from './CityList.module.css';
-import { CitiesContext } from '@/contexts/cities/CitiesContext';
 import Spinner from '../spinner/Spinner';
 import CityItem from '../cityItem/CityItem';
 import Message from '../message/Message';
+import { CitiesContext } from '@/contexts/citiesContext';
 
 const CityList = () => {
     const { cities, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');
