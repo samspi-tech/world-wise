@@ -1,11 +1,9 @@
 import type { Cities } from 'data/types';
-import type { Country } from './CountryList';
-
-type Countries = Country[];
+import type { Countries } from './types';
 
 export const getCountriesWithoutDuplicates = (cities: Cities) => {
     const countries = cities?.reduce<Countries>((acc, city) => {
-        const { id, country, emoji } = city;
+        const { id, country, emoji } = city!;
 
         const isCountryDuplicate = acc
             .map(({ name }) => name)

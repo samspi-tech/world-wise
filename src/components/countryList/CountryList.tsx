@@ -6,12 +6,6 @@ import Message from '../message/Message';
 import CountryItem from '../countryItem/CountryItem';
 import { getCountriesWithoutDuplicates } from './helpers';
 
-export type Country = {
-    id: number;
-    name: string;
-    emoji: string;
-};
-
 const CountryList = () => {
     const { cities, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');
 
