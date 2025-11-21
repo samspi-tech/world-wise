@@ -6,11 +6,17 @@ import { useCustomContext } from '@/hooks/useCustomContext';
 import ChangeMapCenter from './partials/ChangeMapCenter';
 import { CitiesContext } from '@/contexts/CitiesContext';
 import DetectClick from './partials/DetectClick';
+import { useGeolocation } from '@/hooks/useGeolocation';
+import Button from '../button/Button';
 
 const Map = () => {
     const [searchParams] = useSearchParams();
     const { cities } = useCustomContext(CitiesContext, 'Cities ctx');
-    const [position, setPosition] = useState<[number, number]>([40, 0]);
+    const [position, setPosition] = useState<[lat: number, lng: number]>([
+        40, 0,
+    ]);
+    const { isLoadingGeoPosition, handleGetPosistion, geoPosition } =
+        useGeolocation();
 
     const lat = Number(searchParams.get('lat'));
     const lng = Number(searchParams.get('lng'));
@@ -20,8 +26,18 @@ const Map = () => {
         if (lat && lng) setPosition([lat, lng]);
     }, [lat, lng]);
 
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        if (geoPosition) setPosition([geoPosition.lat, geoPosition.lng]);
+    }, [geoPosition]);
+
     return (
         <div className={styles.mapContainer}>
+            {!geoPosition && (
+                <Button style="position" onClick={handleGetPosistion}>
+                    {isLoadingGeoPosition ? 'Loading...' : 'Use your position'}
+                </Button>
+            )}
             <MapContainer
                 zoom={6}
                 center={position}
