@@ -1,16 +1,28 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
 import styles from './City.module.css';
 import Spinner from '../spinner/Spinner';
 import { formatDate } from '@/utils/globalHelpers';
 import Message from '../message/Message';
 import Button from '../button/Button';
 import { useNavigateBack } from '@/hooks/useNavigateBack';
-import { useFetchSingleCity } from '@/hooks/useFetchSingleCity';
+import { useCustomContext } from '@/hooks/useCustomContext';
+import { CitiesContext } from '@/contexts/citiesContext';
 
 const City = () => {
     const { cityId } = useParams();
     const handleNavigateBack = useNavigateBack();
-    const { city, isLoading } = useFetchSingleCity(cityId!);
+    const { city, isLoading, getSingleCity } = useCustomContext(
+        CitiesContext,
+        'Cities ctx'
+    );
+
+    useEffect(() => {
+        getSingleCity(cityId!);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cityId]);
 
     if (isLoading) return <Spinner />;
 
