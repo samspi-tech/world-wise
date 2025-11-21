@@ -3,7 +3,7 @@ import styles from './CityList.module.css';
 import Spinner from '../spinner/Spinner';
 import CityItem from '../cityItem/CityItem';
 import Message from '../message/Message';
-import { CitiesContext } from '@/contexts/citiesContext';
+import { CitiesContext } from '@/contexts/CitiesContext';
 
 const CityList = () => {
     const { cities, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');

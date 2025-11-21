@@ -10,6 +10,7 @@
 <ul>
 <li>React Router Dom</li>
 <li>json-server</li>
+<li>Leaflet</li>
 </ul></br>
 
 Udemy course: [The Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/)

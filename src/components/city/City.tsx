@@ -8,7 +8,7 @@ import Message from '../message/Message';
 import Button from '../button/Button';
 import { useNavigateBack } from '@/hooks/useNavigateBack';
 import { useCustomContext } from '@/hooks/useCustomContext';
-import { CitiesContext } from '@/contexts/citiesContext';
+import { CitiesContext } from '@/contexts/CitiesContext';
 
 const City = () => {
     const { cityId } = useParams();

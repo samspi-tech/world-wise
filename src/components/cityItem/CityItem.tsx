@@ -3,7 +3,7 @@ import styles from './CityItem.module.css';
 import { formatDate } from '@/utils/globalHelpers';
 import { Link } from 'react-router-dom';
 import { useCustomContext } from '@/hooks/useCustomContext';
-import { CitiesContext } from '@/contexts/citiesContext';
+import { CitiesContext } from '@/contexts/CitiesContext';
 
 type CityItemProps = {
     city: City;
