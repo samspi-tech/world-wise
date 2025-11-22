@@ -4,7 +4,7 @@ import Spinner from '../spinner/Spinner';
 import Message from '../message/Message';
 import CountryItem from '../countryItem/CountryItem';
 import { getCountriesWithoutDuplicates } from './helpers';
-import { CitiesContext } from '@/contexts/citiesContext';
+import { CitiesContext } from '@/contexts/CitiesContext';
 
 const CountryList = () => {
     const { cities, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');

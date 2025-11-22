@@ -1,5 +1,5 @@
+import type { Country } from '../countryList/types';
 import styles from './CountryItem.module.css';
-import type { Country } from '../countryList/CountryList';
 
 type CountryItemProps = {
     country: Country;

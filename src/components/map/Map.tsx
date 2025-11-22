@@ -8,13 +8,12 @@ import { CitiesContext } from '@/contexts/CitiesContext';
 import DetectClick from './partials/DetectClick';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import Button from '../button/Button';
+import type { Position } from './types';
 
 const Map = () => {
     const [searchParams] = useSearchParams();
+    const [position, setPosition] = useState<Position>([40, 0]);
     const { cities } = useCustomContext(CitiesContext, 'Cities ctx');
-    const [position, setPosition] = useState<[lat: number, lng: number]>([
-        40, 0,
-    ]);
     const { isLoadingGeoPosition, handleGetPosistion, geoPosition } =
         useGeolocation();
 

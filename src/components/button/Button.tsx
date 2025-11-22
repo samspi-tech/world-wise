@@ -1,9 +1,9 @@
 import type { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.css';
 
-type ButtonProps = {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'back' | 'position';
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
 const Button = ({ variant = 'primary', ...props }: ButtonProps) => {
     return <button {...props} className={`${styles.btn} ${styles[variant]}`} />;

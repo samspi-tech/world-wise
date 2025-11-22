@@ -1,7 +1,8 @@
 import { useMap } from 'react-leaflet';
+import type { Position } from '../types';
 
 type ChangeMapCenterProps = {
-    position: [number, number];
+    position: Position;
 };
 
 const ChangeMapCenter = ({ position }: ChangeMapCenterProps) => {
