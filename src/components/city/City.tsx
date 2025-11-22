@@ -62,7 +62,7 @@ const City = () => {
                 </a>
             </div>
             <div>
-                <Button style="back" onClick={handleNavigateBack}>
+                <Button variant="back" onClick={handleNavigateBack}>
                     Back
                 </Button>
             </div>

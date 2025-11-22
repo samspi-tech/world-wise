@@ -1,13 +1,13 @@
 import { useState, type ChangeEvent } from 'react';
 import styles from './Form.module.css';
 import Button from '../button/Button';
-import { useNavigateBack } from '@/hooks/useNavigateBack';
 import { useCustomContext } from '@/hooks/useCustomContext';
 import { CitiesContext } from '@/contexts/CitiesContext';
 import Spinner from '../spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
-    const handleNavigateBack = useNavigateBack();
+    const navigate = useNavigate();
     const { city, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');
 
     const [values, setValues] = useState({
@@ -66,7 +66,11 @@ const Form = () => {
             </div>
             <div className={styles.buttons}>
                 <Button type="submit">Add</Button>
-                <Button type="button" style="back" onClick={handleNavigateBack}>
+                <Button
+                    type="button"
+                    variant="back"
+                    onClick={() => navigate('/app/cities')}
+                >
                     Back
                 </Button>
             </div>

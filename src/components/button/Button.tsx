@@ -1,17 +1,12 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.css';
 
 type ButtonProps = {
-    children: ReactNode;
-    style?: 'primary' | 'back' | 'position';
+    variant?: 'primary' | 'back' | 'position';
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({ style = 'primary', children, ...props }: ButtonProps) => {
-    return (
-        <button {...props} className={`${styles.btn} ${styles[style]}`}>
-            {children}
-        </button>
-    );
+const Button = ({ variant = 'primary', ...props }: ButtonProps) => {
+    return <button {...props} className={`${styles.btn} ${styles[variant]}`} />;
 };
 
 export default Button;
