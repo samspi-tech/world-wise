@@ -27,8 +27,7 @@ const Form = () => {
         });
     };
 
-    if (isLoading) return <Spinner />;
-    if (isFormDataLoading) return <Spinner />;
+    if (isLoading || isFormDataLoading) return <Spinner />;
 
     const { cityName, emoji, date, notes } = city ?? formCityData;
 
