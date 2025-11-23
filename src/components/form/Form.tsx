@@ -1,36 +1,36 @@
-import { useState, type ChangeEvent } from 'react';
+import { type ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 import Button from '../button/Button';
 import { useCustomContext } from '@/hooks/useCustomContext';
 import { CitiesContext } from '@/contexts/CitiesContext';
 import Spinner from '../spinner/Spinner';
-import { useNavigate } from 'react-router-dom';
+import { useURLPosition } from '@/hooks/useURLPosition';
+import { useFetchFormCityData } from '@/hooks/useFetchFormCityData';
 
 const Form = () => {
     const navigate = useNavigate();
     const { city, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');
 
-    const [values, setValues] = useState({
-        cityName: '',
-        emoji: '',
-        notes: '',
-        date: '',
-    });
+    const { lat, lng } = useURLPosition();
+    const { isFormDataLoading, formCityData, setFormCityData } =
+        useFetchFormCityData(String(lat), String(lng));
 
     const handleFormValues = (
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
 
-        setValues({
-            ...values,
+        setFormCityData({
+            ...formCityData,
             [name]: value,
         });
     };
 
     if (isLoading) return <Spinner />;
+    if (isFormDataLoading) return <Spinner />;
 
-    const { cityName, emoji, date, notes } = city ?? values;
+    const { cityName, emoji, date, notes } = city ?? formCityData;
 
     return (
         <form className={styles.form}>
@@ -49,7 +49,7 @@ const Form = () => {
                 <input
                     id="date"
                     name="date"
-                    value={date}
+                    value={String(date)}
                     onChange={handleFormValues}
                 />
             </div>

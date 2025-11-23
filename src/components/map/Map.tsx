@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import styles from './Map.module.css';
 import { useCustomContext } from '@/hooks/useCustomContext';
@@ -9,16 +8,14 @@ import DetectClick from './partials/DetectClick';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import Button from '../button/Button';
 import type { Position } from './types';
+import { useURLPosition } from '@/hooks/useURLPosition';
 
 const Map = () => {
-    const [searchParams] = useSearchParams();
+    const { lat, lng } = useURLPosition();
     const [position, setPosition] = useState<Position>([40, 0]);
     const { cities } = useCustomContext(CitiesContext, 'Cities ctx');
     const { isLoadingGeoPosition, handleGetPosistion, geoPosition } =
         useGeolocation();
-
-    const lat = Number(searchParams.get('lat'));
-    const lng = Number(searchParams.get('lng'));
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
