@@ -8,6 +8,7 @@ type CitiesContextValues = {
     isLoading: boolean;
     getSingleCity: (id: string) => void;
     createCity: (payload: City) => void;
+    deleteCity: (id: string) => void;
 };
 
 type CitiesProviderProps = {
@@ -70,6 +71,24 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
         }
     };
 
+    const deleteCity = async (id: string) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(`${BASE_URL}/cities/${id}`, {
+                method: 'DELETE',
+            });
+            const deletedCity: City = await res.json();
+
+            setCities((cities) => {
+                return cities?.filter((city) => city?.id !== deletedCity?.id);
+            });
+        } catch (err) {
+            if (err instanceof Error) console.error(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <CitiesContext.Provider
             value={{
@@ -78,6 +97,7 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
                 isLoading,
                 getSingleCity,
                 createCity,
+                deleteCity,
             }}
         >
             {children}
