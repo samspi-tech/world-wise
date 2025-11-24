@@ -23,7 +23,12 @@ const initialCitiesState: CitiesState = {
 };
 
 const citiesReducer = (state: CitiesState, action: Action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+
+    const city = payload as City;
+    const cities = payload as Cities;
+
+    switch (type) {
         case 'loading': {
             return {
                 ...state,
@@ -34,28 +39,28 @@ const citiesReducer = (state: CitiesState, action: Action) => {
             return {
                 ...state,
                 isLoading: false,
-                cities: action.payload as Cities,
+                cities,
             };
         }
         case 'city/loaded': {
             return {
                 ...state,
                 isLoading: false,
-                city: action.payload as City,
+                city,
             };
         }
         case 'city/created': {
             return {
                 ...state,
                 isLoading: false,
-                cities: action.payload as Cities,
+                cities,
             };
         }
         case 'city/deleted': {
             return {
                 ...state,
                 isLoading: false,
-                cities: action.payload as Cities,
+                cities,
             };
         }
         default: {
