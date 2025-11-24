@@ -3,7 +3,6 @@ import { convertCountryCodeToEmoji } from '@/components/form/helpers';
 import { BIG_DATA_CLOUD_URL } from '@/utils/constants';
 
 export const useCityForm = (lat: string, lng: string) => {
-    const [error, setError] = useState('');
     const [date, setDate] = useState<Date | null>(new Date());
     const [isFormDataLoading, setIsFormDataLoading] = useState(false);
     const [formCityData, setFormCityData] = useState({
@@ -43,7 +42,7 @@ export const useCityForm = (lat: string, lng: string) => {
                     date,
                 });
             } catch (err) {
-                if (err instanceof Error) setError(err.message);
+                if (err instanceof Error) console.error(err.message);
             } finally {
                 setIsFormDataLoading(false);
             }
@@ -52,7 +51,6 @@ export const useCityForm = (lat: string, lng: string) => {
     }, [lat, lng, date]);
 
     return {
-        error,
         isFormDataLoading,
         formCityData,
         handleFormValues,
