@@ -1,38 +1,56 @@
-import { type ChangeEvent } from 'react';
+import DatePicker from 'react-datepicker';
 import { useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 import Button from '../button/Button';
-import { useCustomContext } from '@/hooks/useCustomContext';
-import { CitiesContext } from '@/contexts/CitiesContext';
 import Spinner from '../spinner/Spinner';
 import { useURLPosition } from '@/hooks/useURLPosition';
-import { useFetchFormCityData } from '@/hooks/useFetchFormCityData';
+import { useCityForm } from '@/hooks/useCityForm';
+import Message from '../message/Message';
+import type { FormEvent } from 'react';
+import { useCustomContext } from '@/hooks/useCustomContext';
+import { CitiesContext } from '@/contexts/CitiesContext';
 
 const Form = () => {
     const navigate = useNavigate();
-    const { city, isLoading } = useCustomContext(CitiesContext, 'Cities ctx');
+    const { createCity, isLoading } = useCustomContext(
+        CitiesContext,
+        'Cities ctx'
+    );
 
     const { lat, lng } = useURLPosition();
-    const { isFormDataLoading, formCityData, setFormCityData } =
-        useFetchFormCityData(String(lat), String(lng));
+    const { isFormDataLoading, formCityData, handleFormValues, setDate } =
+        useCityForm(String(lat), String(lng));
 
-    const handleFormValues = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value } = e.target;
+    if (isFormDataLoading || isLoading) return <Spinner />;
 
-        setFormCityData({
+    if (!lat && !lng) {
+        return <Message message="Start by clicking somewhere on the map" />;
+    }
+
+    const { cityName, emoji, date, notes } = formCityData;
+
+    const handleNavigateBack = () => navigate('/app/cities');
+
+    const onSubmit = (e: FormEvent) => {
+        e.preventDefault();
+
+        const { cityName, date } = formCityData;
+        if (!cityName || !date) return;
+
+        const payload = {
             ...formCityData,
-            [name]: value,
-        });
+            position: { lat, lng },
+        };
+
+        createCity(payload);
+        handleNavigateBack();
     };
 
-    if (isLoading || isFormDataLoading) return <Spinner />;
-
-    const { cityName, emoji, date, notes } = city ?? formCityData;
-
     return (
-        <form className={styles.form}>
+        <form
+            onSubmit={onSubmit}
+            className={`${styles.form} ${isLoading && styles.loading}`}
+        >
             <div className={styles.row}>
                 <label htmlFor="cityName">City name</label>
                 <input
@@ -45,11 +63,10 @@ const Form = () => {
             </div>
             <div className={styles.row}>
                 <label htmlFor="date">When did you go to {cityName}?</label>
-                <input
-                    id="date"
-                    name="date"
-                    value={String(date)}
-                    onChange={handleFormValues}
+                <DatePicker
+                    selected={date}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={(date) => setDate(date)}
                 />
             </div>
             <div className={styles.row}>
@@ -68,7 +85,7 @@ const Form = () => {
                 <Button
                     type="button"
                     variant="back"
-                    onClick={() => navigate('/app/cities')}
+                    onClick={handleNavigateBack}
                 >
                     Back
                 </Button>

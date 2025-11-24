@@ -1,20 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ChangeEvent } from 'react';
 import { convertCountryCodeToEmoji } from '@/components/form/helpers';
 import { BIG_DATA_CLOUD_URL } from '@/utils/constants';
 
-export const useFetchFormCityData = (lat: string, lng: string) => {
+export const useCityForm = (lat: string, lng: string) => {
     const [error, setError] = useState('');
+    const [date, setDate] = useState<Date | null>(new Date());
     const [isFormDataLoading, setIsFormDataLoading] = useState(false);
     const [formCityData, setFormCityData] = useState({
         cityName: '',
         country: '',
         emoji: '',
         notes: '',
-        date: new Date(),
+        date,
     });
+
+    const handleFormValues = (
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.currentTarget;
+
+        setFormCityData({
+            ...formCityData,
+            [name]: value,
+        });
+    };
 
     useEffect(() => {
         const fetchFormCityData = async () => {
+            if (!lat && !lng) return;
+
             setIsFormDataLoading(true);
             try {
                 const res = await fetch(
@@ -23,10 +37,10 @@ export const useFetchFormCityData = (lat: string, lng: string) => {
                 const data = await res.json();
                 setFormCityData({
                     cityName: data.city || data.locality || '',
-                    country: data.country,
+                    country: data.countryName,
                     emoji: convertCountryCodeToEmoji(data.countryCode),
                     notes: '',
-                    date: new Date(),
+                    date,
                 });
             } catch (err) {
                 if (err instanceof Error) setError(err.message);
@@ -35,12 +49,13 @@ export const useFetchFormCityData = (lat: string, lng: string) => {
             }
         };
         fetchFormCityData();
-    }, [lat, lng]);
+    }, [lat, lng, date]);
 
     return {
         error,
         isFormDataLoading,
         formCityData,
-        setFormCityData,
+        handleFormValues,
+        setDate,
     };
 };

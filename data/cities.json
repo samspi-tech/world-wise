@@ -1,40 +1,136 @@
 {
-    "cities": [
-        {
-            "cityName": "Lisbon",
-            "country": "Portugal",
-            "emoji": "🇵🇹",
-            "date": "2027-10-31T15:59:59.138Z",
-            "notes": "My favorite city so far!",
-            "position": {
-                "lat": 38.727881642324164,
-                "lng": -9.140900099907554
-            },
-            "id": 73930385
-        },
-        {
-            "cityName": "Madrid",
-            "country": "Spain",
-            "emoji": "🇪🇸",
-            "date": "2027-07-15T08:22:53.976Z",
-            "notes": "",
-            "position": {
-                "lat": 40.46635901755316,
-                "lng": -3.7133789062500004
-            },
-            "id": 17806751
-        },
-        {
-            "cityName": "Berlin",
-            "country": "Germany",
-            "emoji": "🇩🇪",
-            "date": "2027-02-12T09:24:11.863Z",
-            "notes": "Amazing 😃",
-            "position": {
-                "lat": 52.53586782505711,
-                "lng": 13.376933665713324
-            },
-            "id": 98443197
-        }
-    ]
+  "cities": [
+    {
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2027-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": 73930385
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": 17806751
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "id": 1,
+      "cityName": "Courcelles",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "notes": "hello, world!",
+      "date": "2025-11-23T21:31:14.008Z",
+      "position": {
+        "lat": 45.966424541310275,
+        "lng": -0.46142578125000006
+      }
+    },
+    {
+      "id": 1,
+      "cityName": "Segre-en-Anjou Bleu",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "notes": "",
+      "date": "2025-11-23T21:31:14.008Z",
+      "position": {
+        "lat": 47.73932336136857,
+        "lng": -0.8789062500000001
+      }
+    },
+    {
+      "id": "1f6a",
+      "cityName": "Loreux",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "notes": "hello",
+      "date": "2025-11-24T11:34:25.026Z",
+      "position": {
+        "lat": 47.3834738721015,
+        "lng": 1.8457031250000002
+      }
+    },
+    {
+      "id": "f7d3",
+      "cityName": "Zuera",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "notes": "",
+      "date": "2025-11-24T11:42:18.132Z",
+      "position": {
+        "lat": 41.86956082699455,
+        "lng": -0.6372070312500001
+      }
+    },
+    {
+      "id": "6a39",
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "notes": "Paris",
+      "date": "2025-11-24T12:16:53.457Z",
+      "position": {
+        "lat": 48.850258199721495,
+        "lng": 2.3181152343750004
+      }
+    },
+    {
+      "id": "7000",
+      "cityName": "Almodovar del Pinar",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "notes": "",
+      "date": "2025-11-24T12:19:46.738Z",
+      "position": {
+        "lat": 39.707186656826565,
+        "lng": -1.8896484375000002
+      }
+    },
+    {
+      "id": "6887",
+      "cityName": "Merindad de Rio Ubierna",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "notes": "",
+      "date": "2025-11-24T12:21:34.204Z",
+      "position": {
+        "lat": 42.58544425738491,
+        "lng": -3.5815429687500004
+      }
+    },
+    {
+      "id": "29c1",
+      "cityName": "Monforte de Lemos",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "notes": "hey",
+      "date": "2025-11-24T12:23:46.203Z",
+      "position": {
+        "lat": 42.58544425738491,
+        "lng": -7.470703125000001
+      }
+    }
+  ]
 }

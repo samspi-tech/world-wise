@@ -7,6 +7,7 @@ type CitiesContextValues = {
     cities: Cities;
     isLoading: boolean;
     getSingleCity: (id: string) => void;
+    createCity: (payload: City) => void;
 };
 
 type CitiesProviderProps = {
@@ -49,6 +50,26 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
         }
     };
 
+    const createCity = async (payload: City) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(`${BASE_URL}/cities`, {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application-json',
+                },
+            });
+
+            const newCity: City = await res.json();
+            setCities((cities) => [...(cities as []), newCity]);
+        } catch (err) {
+            if (err instanceof Error) console.error(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <CitiesContext.Provider
             value={{
@@ -56,6 +77,7 @@ const CitiesProvider = ({ children }: CitiesProviderProps) => {
                 cities,
                 isLoading,
                 getSingleCity,
+                createCity,
             }}
         >
             {children}

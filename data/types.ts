@@ -1,11 +1,11 @@
 export type City =
     | {
-          id: number;
-          date: string;
+          id?: number;
+          date: Date | null;
           emoji: string;
           country: string;
           cityName: string;
-          notes: string | null;
+          notes: string;
           position: {
               lat: number;
               lng: number;
