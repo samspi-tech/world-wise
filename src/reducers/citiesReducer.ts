@@ -1,10 +1,10 @@
 import type { Cities, City } from 'data/types';
 
-export type CitiesState = {
+export interface CitiesState {
     city: City;
     cities: Cities;
     isLoading: boolean;
-};
+}
 
 type Action = {
     type:
