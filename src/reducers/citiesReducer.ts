@@ -8,7 +8,10 @@ export interface CitiesState {
 
 type Action =
     | { type: 'loading' }
-    | { type: 'city/loaded'; payload: City }
+    | {
+          type: 'city/loaded';
+          payload: City;
+      }
     | {
           type: 'cities/loaded' | 'city/created' | 'city/deleted';
           payload: Cities;
