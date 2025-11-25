@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import styles from './City.module.css';
 import Spinner from '../spinner/Spinner';
 import { formatDate } from '@/utils/globalHelpers';

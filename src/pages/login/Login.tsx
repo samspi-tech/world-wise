@@ -12,8 +12,9 @@ const Login = () => {
     const [email, setEmail] = useState('jack@example.com');
     const { login, isAuth } = useCustomContext(FakeAuthContext, 'FakeAuth ctx');
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         if (email && password) login(email, password);
     };
 

@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 import Button from '../button/Button';
 import Spinner from '../spinner/Spinner';
-import { useURLPosition } from '@/hooks/useURLPosition';
 import { useCityForm } from '@/hooks/useCityForm';
 import Message from '../message/Message';
-import type { FormEvent } from 'react';
 import { useCustomContext } from '@/hooks/useCustomContext';
 import { CitiesContext } from '@/contexts/CitiesContext';
+import { useUrlPosition } from '@/hooks/useUrlPosition';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Form = () => {
         'Cities ctx'
     );
 
-    const { lat, lng } = useURLPosition();
+    const { lat, lng } = useUrlPosition();
     const { isFormDataLoading, formCityData, handleFormValues, setDate } =
         useCityForm(String(lat), String(lng));
 
@@ -31,7 +30,7 @@ const Form = () => {
 
     const handleNavigateBack = () => navigate('/app/cities');
 
-    const onSubmit = (e: FormEvent) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const { cityName, date } = formCityData;

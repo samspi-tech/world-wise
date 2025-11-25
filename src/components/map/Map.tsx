@@ -8,10 +8,10 @@ import DetectClick from './partials/DetectClick';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import Button from '../button/Button';
 import type { Position } from './types';
-import { useURLPosition } from '@/hooks/useURLPosition';
+import { useUrlPosition } from '@/hooks/useUrlPosition';
 
 const Map = () => {
-    const { lat, lng } = useURLPosition();
+    const { lat, lng } = useUrlPosition();
     const [position, setPosition] = useState<Position>([40, 0]);
     const { cities } = useCustomContext(CitiesContext, 'Cities ctx');
     const { isLoadingGeoPosition, handleGetPosistion, geoPosition } =
