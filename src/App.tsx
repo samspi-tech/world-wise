@@ -9,6 +9,7 @@ import CityList from './components/cityList/CityList';
 import CountryList from './components/countryList/CountryList';
 import City from './components/city/City';
 import Form from './components/form/Form';
+import ProtectedRoutes from './pages/protectedRoutes/ProtectedRoutes';
 
 const App = () => {
     return (
@@ -19,11 +20,13 @@ const App = () => {
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/login" element={<Login />} />
 
-                <Route path="/app" element={<AppLayout />}>
-                    <Route path="cities" element={<CityList />} />
-                    <Route path="cities/:cityId" element={<City />} />
-                    <Route path="countries" element={<CountryList />} />
-                    <Route path="form" element={<Form />} />
+                <Route element={<ProtectedRoutes />}>
+                    <Route path="/app" element={<AppLayout />}>
+                        <Route path="cities" element={<CityList />} />
+                        <Route path="cities/:cityId" element={<City />} />
+                        <Route path="countries" element={<CountryList />} />
+                        <Route path="form" element={<Form />} />
+                    </Route>
                 </Route>
 
                 <Route path="/*" element={<PageNotFound />} />

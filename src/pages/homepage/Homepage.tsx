@@ -21,11 +21,9 @@ const Homepage = () => {
                     can think of. Never forget your wonderful experiences, and
                     show your friends how you have wandered the world.
                 </h2>
-                {isAuth && (
-                    <Link to="/app/cities" className="cta">
-                        Start tracking now
-                    </Link>
-                )}
+                <Link to={isAuth ? '/app/cities' : '/login'} className="cta">
+                    Start tracking now
+                </Link>
             </section>
         </main>
     );
