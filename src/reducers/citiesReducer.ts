@@ -6,15 +6,13 @@ export interface CitiesState {
     isLoading: boolean;
 }
 
-type Action = {
-    type:
-        | 'loading'
-        | 'cities/loaded'
-        | 'city/loaded'
-        | 'city/created'
-        | 'city/deleted';
-    payload?: City | Cities;
-};
+type Action =
+    | { type: 'loading' }
+    | { type: 'city/loaded'; payload: City }
+    | {
+          type: 'cities/loaded' | 'city/created' | 'city/deleted';
+          payload: Cities;
+      };
 
 const initialCitiesState: CitiesState = {
     city: {} as City,
@@ -23,12 +21,7 @@ const initialCitiesState: CitiesState = {
 };
 
 const citiesReducer = (state: CitiesState, action: Action) => {
-    const { type, payload } = action;
-
-    const city = payload as City;
-    const cities = payload as Cities;
-
-    switch (type) {
+    switch (action.type) {
         case 'loading': {
             return {
                 ...state,
@@ -39,28 +32,28 @@ const citiesReducer = (state: CitiesState, action: Action) => {
             return {
                 ...state,
                 isLoading: false,
-                cities,
+                cities: action.payload,
             };
         }
         case 'city/loaded': {
             return {
                 ...state,
                 isLoading: false,
-                city,
+                city: action.payload,
             };
         }
         case 'city/created': {
             return {
                 ...state,
                 isLoading: false,
-                cities,
+                cities: action.payload,
             };
         }
         case 'city/deleted': {
             return {
                 ...state,
                 isLoading: false,
-                cities,
+                cities: action.payload,
             };
         }
         default: {

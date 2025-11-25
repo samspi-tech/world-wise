@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useEffect, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import type { Cities, City } from 'data/types';
 import { BASE_URL } from '@/utils/constants';
 import {
@@ -13,13 +13,9 @@ interface CitiesContextValues extends CitiesState {
     deleteCity: (id: string) => void;
 }
 
-type CitiesProviderProps = {
-    children: ReactNode;
-};
-
 const CitiesContext = createContext<CitiesContextValues | null>(null);
 
-const CitiesProvider = ({ children }: CitiesProviderProps) => {
+const CitiesProvider = ({ children }: React.PropsWithChildren) => {
     const [state, dispatch] = useReducer(citiesReducer, initialCitiesState);
     const { city, cities, isLoading } = state;
 
