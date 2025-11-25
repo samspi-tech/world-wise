@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import PageNav from '@/components/pageNav/PageNav';
 import { useCustomContext } from '@/hooks/useCustomContext';
 import { FakeAuthContext } from '@/contexts/FakeAuthContext';
 import Button from '@/components/button/Button';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -14,10 +14,12 @@ const Login = () => {
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        login(email, password);
-
-        if (isAuth) navigate('/app/cities', { replace: true });
+        if (email && password) login(email, password);
     };
+
+    useEffect(() => {
+        if (isAuth) navigate('/app/cities', { replace: true });
+    }, [isAuth, navigate]);
 
     return (
         <main onSubmit={handleLogin} className={styles.login}>
@@ -26,23 +28,21 @@ const Login = () => {
                 <div className={styles.row}>
                     <label htmlFor="email">Email address</label>
                     <input
-                        type="email"
                         id="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
                         value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-
                 <div className={styles.row}>
                     <label htmlFor="password">Password</label>
                     <input
-                        type="password"
                         id="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
                         value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-
                 <div>
                     <Button type="submit">Login</Button>
                 </div>

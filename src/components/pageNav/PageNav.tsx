@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import styles from './PageNav.module.css';
 import Logo from '../logo/Logo';
+import { useCustomContext } from '@/hooks/useCustomContext';
+import { FakeAuthContext } from '@/contexts/FakeAuthContext';
 
 const PageNav = () => {
+    const { user } = useCustomContext(FakeAuthContext, 'FakeAuth ctx');
+
     return (
         <nav className={styles.nav}>
             <Logo />
@@ -13,11 +17,13 @@ const PageNav = () => {
                 <li>
                     <NavLink to="/pricing">Pricing</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/login" className={styles.ctaLink}>
-                        Login
-                    </NavLink>
-                </li>
+                {!user && (
+                    <li>
+                        <NavLink to="/login" className={styles.ctaLink}>
+                            Login
+                        </NavLink>
+                    </li>
+                )}
             </ul>
         </nav>
     );

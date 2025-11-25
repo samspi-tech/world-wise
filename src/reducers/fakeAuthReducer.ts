@@ -8,11 +8,10 @@ type User = {
 export interface FakeAuthState {
     user: User | null;
     isAuth: boolean;
-    isLoading: boolean;
 }
 
 type Action =
-    | { type: 'loading' | 'logout' }
+    | { type: 'logout' }
     | {
           type: 'login';
           payload: User;
@@ -21,17 +20,10 @@ type Action =
 const initialFakeAuthState: FakeAuthState = {
     user: null,
     isAuth: false,
-    isLoading: false,
 };
 
 const fakeAuthReducer = (state: FakeAuthState, action: Action) => {
     switch (action.type) {
-        case 'loading': {
-            return {
-                ...state,
-                isLoading: true,
-            };
-        }
         case 'login': {
             return {
                 ...state,

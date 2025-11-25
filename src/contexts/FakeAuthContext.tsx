@@ -15,14 +15,13 @@ const FakeAuthContext = createContext<FakeAuthContextValues | null>(null);
 
 const FakeAuthProvider = ({ children }: React.PropsWithChildren) => {
     const [state, dispatch] = useReducer(fakeAuthReducer, initialFakeAuthState);
-    const { user, isAuth, isLoading } = state;
+    const { user, isAuth } = state;
 
     const login = (email: string, password: string) => {
         const { email: fakeEmail, password: fakePassword } = FAKE_USER;
         const isValidUser = email === fakeEmail && password === fakePassword;
 
         if (isValidUser) {
-            dispatch({ type: 'loading' });
             dispatch({
                 type: 'login',
                 payload: FAKE_USER,
@@ -30,17 +29,13 @@ const FakeAuthProvider = ({ children }: React.PropsWithChildren) => {
         }
     };
 
-    const logout = () => {
-        dispatch({ type: 'loading' });
-        dispatch({ type: 'logout' });
-    };
+    const logout = () => dispatch({ type: 'logout' });
 
     return (
         <FakeAuthContext.Provider
             value={{
                 user,
                 isAuth,
-                isLoading,
                 login,
                 logout,
             }}

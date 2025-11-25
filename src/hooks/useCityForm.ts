@@ -16,7 +16,7 @@ export const useCityForm = (lat: string, lng: string) => {
     const handleFormValues = (
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        const { name, value } = e.currentTarget;
+        const { name, value } = e.target;
 
         setFormCityData({
             ...formCityData,
