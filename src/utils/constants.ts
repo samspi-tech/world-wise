@@ -6,6 +6,6 @@ export const BIG_DATA_CLOUD_URL =
 export const FAKE_USER = {
     name: 'Jack',
     email: 'jack@example.com',
-    password: 'qwerty',
+    password: import.meta.env.VITE_FAKE_PASSWORD,
     avatar: 'https://i.pravatar.cc/100?u=zz',
 };

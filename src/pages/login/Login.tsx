@@ -1,13 +1,26 @@
 import { useState } from 'react';
 import styles from './Login.module.css';
 import PageNav from '@/components/pageNav/PageNav';
+import { useCustomContext } from '@/hooks/useCustomContext';
+import { FakeAuthContext } from '@/contexts/FakeAuthContext';
+import Button from '@/components/button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [password, setPassword] = useState('');
     const [email, setEmail] = useState('jack@example.com');
-    const [password, setPassword] = useState('qwerty');
+    const { login, isAuth } = useCustomContext(FakeAuthContext, 'FakeAuth ctx');
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        login(email, password);
+
+        if (isAuth) navigate('/app/cities', { replace: true });
+    };
 
     return (
-        <main className={styles.login}>
+        <main onSubmit={handleLogin} className={styles.login}>
             <PageNav />
             <form className={styles.form}>
                 <div className={styles.row}>
@@ -31,7 +44,7 @@ const Login = () => {
                 </div>
 
                 <div>
-                    <button>Login</button>
+                    <Button type="submit">Login</Button>
                 </div>
             </form>
         </main>
