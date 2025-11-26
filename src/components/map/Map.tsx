@@ -19,7 +19,7 @@ const Map = () => {
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        if (lat && lng) setPosition([lat, lng]);
+        if (lat && lng) setPosition(() => [lat, lng]);
     }, [lat, lng]);
 
     useEffect(() => {

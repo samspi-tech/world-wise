@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useCallback, useEffect, useReducer } from 'react';
 import type { Cities, City } from 'data/types';
 import { BASE_URL } from '@/utils/constants';
 import {
@@ -37,22 +37,25 @@ const CitiesProvider = ({ children }: React.PropsWithChildren) => {
         getAllCities();
     }, []);
 
-    const getSingleCity = async (id: string) => {
-        if (city?.id === Number(id)) return;
+    const getSingleCity = useCallback(
+        async (id: string) => {
+            if (city?.id === Number(id)) return;
 
-        dispatch({ type: 'loading' });
-        try {
-            const res = await fetch(`${BASE_URL}/cities?id=${id}`);
-            const data: City[] = await res.json();
+            dispatch({ type: 'loading' });
+            try {
+                const res = await fetch(`${BASE_URL}/cities?id=${id}`);
+                const data: City[] = await res.json();
 
-            dispatch({
-                type: 'city/loaded',
-                payload: data[0],
-            });
-        } catch (err) {
-            if (err instanceof Error) console.error(err.message);
-        }
-    };
+                dispatch({
+                    type: 'city/loaded',
+                    payload: data[0],
+                });
+            } catch (err) {
+                if (err instanceof Error) console.error(err.message);
+            }
+        },
+        [city?.id]
+    );
 
     const createCity = async (payload: City) => {
         dispatch({ type: 'loading' });

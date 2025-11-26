@@ -1,5 +1,5 @@
 export type Country = {
-    id: number;
+    id?: number;
     name: string;
     emoji: string;
 };
